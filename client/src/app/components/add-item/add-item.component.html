@@ -1,0 +1,8 @@
+<form>
+  <input type="file" name="image" [(ngModel)]="item.image">
+  <input placeholder="Title of item" type="text" name="title" [(ngModel)]="item.title">
+  <input placeholder="Description" type="textarea" name="description" [(ngModel)]="item.description">
+  <input placeholder="Category" type="text" name="category" [(ngModel)]="item.category">
+  <input placeholder="size" type="text" name="size" [(ngModel)]="item.size">
+  <button (click)="addItem()" type="submit">Upload</button>
+</form>

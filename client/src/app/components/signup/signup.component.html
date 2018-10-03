@@ -1,0 +1,88 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA_P3CZrEyl_mS3AlYNQHnfBdXkhbYmIIE",
+      authDomain: "musicallyspeaking-1eae8.firebaseapp.com",
+      databaseURL: "https://musicallyspeaking-1eae8.firebaseio.com",
+      projectId: "musicallyspeaking-1eae8",
+      storageBucket: "musicallyspeaking-1eae8.appspot.com",
+      messagingSenderId: "610345710953"
+    };
+    firebase.initializeApp(config);
+  </script>
+</head>
+<body>
+  <!-- <router-outlet></router-outlet> -->
+<header>
+
+    <div class="narrow">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Placeholder" [(ngModel)]="name" id="first_name" name="name" type="text" class="validate">
+              <label for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input name="lastName" [(ngModel)]="lastName" id="last_name" type="text" class="validate">
+              <label for="last_name">Last Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="username" [(ngModel)]="username" id="text" type="text" class="validate">
+              <label for="text">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="email" [(ngModel)]="email" id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="password" id="password" [(ngModel)]="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+              <label>What is your role?</label>
+              <select>
+                <option value="" disabled selected>Choose your option</option>
+                <option value="USER">User</option>
+                <option value="MUSICIAN">Musician</option>
+                <option value="LABEL">Label</option>
+                <option value="EO">Event Organizer</option>
+              </select>
+            
+          </div>
+          
+          <button class="btn waves-effect waves-light" (click)="handleSignup()" type="submit" name="action">Submit
+           
+          </button>
+  
+          <!-- <button type="submit" (click)="handleSignup()">Signup</button>   -->
+        </form>
+
+        <button type="submit" (click)="googleLogin()">
+            Google login
+        </button>
+       
+      </div>
+    </div>
+  </header>
+   
+</body>
+</html>

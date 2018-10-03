@@ -1,0 +1,31 @@
+.login-bar{
+  display:flex;
+  justify-content:center;
+}
+
+.sgnp {
+  display:inline;
+  padding-top:60px;
+  margin:20px;
+}
+
+header {
+  width:100vw;
+  background-image: url("https://wallpapercave.com/wp/2ERlMG9.jpg");
+  height:500px;
+  background-size:cover;
+}
+
+.row {
+  width:75%;
+}
+
+.col {
+  width:24%;
+}
+
+header h1 {
+  color:white;
+  text-align: center;
+  padding-top:30px;
+}
