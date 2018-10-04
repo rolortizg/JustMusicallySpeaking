@@ -5,7 +5,10 @@ const Schema = require('mongoose').Schema;
 const userSchema = new require('mongoose').Schema({
     name:String,
     lastName:String,
-    username: String,
+    username:{
+        type:String,
+        default:'FB'
+    },
     // image: String,
     email: String,
     // profile:{

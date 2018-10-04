@@ -76,11 +76,19 @@
           <!-- <button type="submit" (click)="handleSignup()">Signup</button>   -->
         </form>
 
-        <button type="submit" (click)="googleLogin()">
-            Google login
-        </button>
+       
+        
        
       </div>
+      <a (click)="googleLogin()">
+          <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--FGeepbF---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/dpiytaii5nezptwibem4.png" width="100" height="50" alt="">
+      </a>
+      <button type="submit" (click)="faceLogin()">
+          Facebook login
+      </button>
+      <button (click)="logout()">
+        Logout
+      </button>
     </div>
   </header>
    

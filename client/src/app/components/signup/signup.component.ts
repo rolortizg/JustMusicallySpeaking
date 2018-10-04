@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import {Router} from '@angular/router'
 // or for ES6 imports.
 import firebase from '../../api/firebase';
+import {facebookLogin} from '../../api/nodejs';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class SignupComponent implements OnInit {
     this.auth.password = this.password;
     this.authService.signup(this.auth)
     .subscribe( user => this.user = user)
+   
     this.name = '';
     this.lastName = '';
     this.username = '';
@@ -70,10 +72,61 @@ export class SignupComponent implements OnInit {
         //     this.setState({
         //    user: result.user
         // });
+        
+                //  // agregamos el usuario a la base de datos
+                //   firebase.database().ref('usuarios/' + result.user.uid)
+                //   .set({
+                //     uid:result.user.uid,
+                //     displayName:result.user.displayName,
+                //     photoURL:result.user.photoURL,
+                //     email:result.user.email
+                //   });
         // console.log('hola ', this.state.user.displayName);
      
     });
 };
+
+faceLogin = () => {
+  const provider = new firebase.auth.FacebookAuthProvider();
+  firebase.auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+          // const token = result.credential.accessToken;
+          //localStorage.setItem("userToken",JSON.stringify('facebook '+result.credential.accessToken));
+          //localStorage.setItem("userInfo",JSON.stringify(result.user));
+          //     this.setState({
+          //    user: result.user
+          // });
+          // console.log('hola ', this.state.user.displayName);
+        
+          //Crea el perfil en django
+          //api.createProfile(result.user.photoURL, result.user.uid, result.user.providerData[0].uid);                // this.sendToBackend(result.credential.accessToken);
+
+            // agregamos el usuario a la base de datos
+          //   firebase.database().ref('users/' + result.user.uid)
+          //   .set({
+          //     uid:result.user.uid,
+          //     displayName:result.user.displayName,
+          //     photoURL:result.user.photoURL,
+          //     email:result.user.email
+          //   });
+
+          //guardamos al usuario en el store
+          // this.props.setUser(result.user, this.props.history);
+
+          //console.log(result.credential.accessToken)
+          localStorage.setItem("userToken",JSON.stringify('facebook '+ result.credential.accessToken));
+          localStorage.setItem("userInfo",JSON.stringify(result.user));
+          return facebookLogin(result.credential.accessToken)
+
+      })
+      
+};
+
+  logout(){
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userInfo");
+  }
 
 
   ngOnInit() {

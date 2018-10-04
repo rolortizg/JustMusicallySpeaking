@@ -26,6 +26,26 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+//spotify
+var SpotifyWebApi = require('spotify-web-api-node');
+
+// Remember to paste your credentials here
+var clientId = 'd231ca46592a4636a7f5cebe09b19dbd',
+    clientSecret = '6215b49e5ba149f5b56c98d22c60d3d4';
+
+var spotifyApi = new SpotifyWebApi({
+  clientId : clientId,
+  clientSecret : clientSecret
+});
+
+// Retrieve an access token.
+spotifyApi.clientCredentialsGrant()
+  .then(function(data) {
+    spotifyApi.setAccessToken(data.body['access_token']);
+  }, function(err) {
+    console.log('Something went wrong when retrieving an access token', err);
+});
+
 //cors
 app.use(require('cors')({
   credentials: true,
@@ -87,9 +107,12 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 const auth = require('./routes/auth')
 const add = require('./routes/addItem')
+const profile = require('./routes/profile')
+
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/add', add)
+app.use('/profile', profile)
 
 
 module.exports = app;
