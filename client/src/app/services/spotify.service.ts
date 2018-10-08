@@ -7,8 +7,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SpotifyService {
-  
-  token = 'BQA7R67TyzA16eivZpRHASjMIjfXQEnD35izEf3CoyJHuxsdgj_M8lMEbcKd5kIE99RYtl1ltqVoaQ5uz0qSw9pKh9XAVGE3Uu9fOV31TlM6eXiu7r6zrh0t7JTeniy8Sx2wRRuXnbylwki5ig';
+  // BQD9F_DmUBzZ48VNPJDRdQrotrngL5ioz9DeVrBRPtvnF5pllniR8qliMRo1YUTPqh4evHCIsvSlnU4Ifmjas4rRNKDaxpNCVZDxxl0haa-_M8CUHyraquqXWStqA13Arz2JqtHsut0AH48f5w
+  token = 'BQB4mqAUUx-1HFpxU0iNxKPZC_jmY7aJuQllKAv7sDd0v__4lUuWs0zEgPyZtGHnAuqWJZzgpiYxIzuIIlwep_HmUypejt3N17xVKj4T0ciHvJW53RDJCtT2bW7wRcxq-gFMKBfX8_4qPiXN6Q';
 
   constructor(private http: HttpClient) {
     this.getNewReleases();
@@ -26,11 +26,21 @@ export class SpotifyService {
   
   getNewReleases() {
     return this.getQuery('browse/new-releases?limit=20')
-        .pipe(map(data => data['albums'].items));
+        .pipe(map(data => data['album'].items));
   }
 
   getArtista(termino: string) {
-    return this.getQuery(`search?q=${termino}&type=artist&limit=15`)
+    return this.getQuery(`search?q=${termino}&type=artist&limit=3`)
         .pipe(map(data => data['artists'].items));
   }
+  getTracks(term: any){
+    return this.getQuery(`search?q=${term}&type=track&market=ES&limit=9&offset=5`)
+        .pipe(map(data => data['tracks'].items));
+
+  }
+
+  // getArtista(termino: string) {
+  //   return this.getQuery(`search?q=${termino}&type=artist&limit=15`)
+  //       .pipe(map(data => data['artists'].items));
+  // }
 }

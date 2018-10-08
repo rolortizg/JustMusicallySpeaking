@@ -5,8 +5,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {FormsModule} from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { MzButtonModule, MzInputModule, MzDropdownModule } from 'ngx-materialize';
 
 
 //components
@@ -26,7 +28,8 @@ import {routes} from './routes';
 //services
 import { AuthService } from './services/auth/auth.service';
 import { AddItemService } from './services/add/add-item.service';
-import { SpotifyService } from './services/spotify.service'
+import { SpotifyService } from './services/spotify.service';
+import { NoimagePipe } from './pipes/noimage.pipe'
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { SpotifyService } from './services/spotify.service'
     SignupComponent,
     AddItemComponent,
     UserProfileComponent,
+    NoimagePipe,
     
   ],
   imports: [
@@ -44,7 +48,12 @@ import { SpotifyService } from './services/spotify.service'
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule, 
+    MatCheckboxModule,
+    MzButtonModule, 
+    MzInputModule,
+    MzDropdownModule 
   ],
   providers: [AuthService, AddItemService, SpotifyService],
   bootstrap: [AppComponent]

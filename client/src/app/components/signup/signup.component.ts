@@ -123,10 +123,7 @@ faceLogin = () => {
       
 };
 
-  logout(){
-    localStorage.removeItem("userToken");
-    localStorage.removeItem("userInfo");
-  }
+
 
 
   ngOnInit() {

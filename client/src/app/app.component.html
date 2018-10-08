@@ -24,9 +24,34 @@
     <a [routerLink]="['/signup']">
       Regístrate
     </a> -->
-    <div>
+ 
+
+  <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'><i style="color:black;"class="fas fa-bars"></i></a> -->
+
+  <!-- Dropdown Structure -->
+  <mz-dropdown
+  [id]="'dropdown-demo'"
+  [align]="'left'"
+  [belowOrigin]="false"
+  [constrainWidth]="true"
+  [dropdownButtonId]="'btn-dropdown-demo'"
+  [gutter]="true"
+  [hover]="true"
+  [inDuration]="300"
+  [outDuration]="300"
+  [stopPropagation]="true"
+>
+  <mz-dropdown-item><a class="blackify" href="/profile">Profile</a></mz-dropdown-item>
+  <mz-dropdown-item><a class="blackify" href="#!">Explore</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a class="blackify" (click)="logout()">Log out</a></mz-dropdown-item>
+</mz-dropdown>
+
+<a mz-button id="btn-dropdown-demo" href="#"><i style="color:black;"class="fas fa-bars"></i></a>
+    <!-- <div>
         <i style="color:black;"class="fas fa-bars"></i>
-    </div>
+    </div> -->
+ 
   </nav>
   <router-outlet></router-outlet>
 
@@ -35,4 +60,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> 
 </body>
 </html>
+
+
 

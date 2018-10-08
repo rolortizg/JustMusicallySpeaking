@@ -12,6 +12,7 @@ const session      = require('express-session')
 const MongoStore   = require("connect-mongo")(session);
 const multer = require('multer');
 
+
 mongoose.Promise = Promise;
 mongoose
   .connect('mongodb://localhost/JustMusicallySpeaking', {useMongoClient: true})
@@ -46,7 +47,7 @@ spotifyApi.clientCredentialsGrant()
     console.log('Something went wrong when retrieving an access token', err);
 });
 
-//cors
+// cors
 app.use(require('cors')({
   credentials: true,
   origin: 'http://localhost:4200'

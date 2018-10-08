@@ -20,9 +20,10 @@ export class AuthService {
   }
 
   login(auth): Observable<string>{
-    return this.http.post(this.url + 'login', auth, {withCredentials:true})
+    return this.http.post(this.url + 'login', auth)
     .pipe(map(res=>res.json()))
   }
 
+  // , {withCredentials:true}
 }
 

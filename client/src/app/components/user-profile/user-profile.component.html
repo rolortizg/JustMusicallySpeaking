@@ -1,16 +1,69 @@
-<p>user-profile works!</p>
+<!-- <p>user-profile works!</p>
 <div class="row">
   <div class="col">
       <input #termino type="text" (keyup)="buscar(termino.value)" class="form-control" placeholder="Buscar Artista">
   </div>
 </div>
+<div *ngFor="let cancion of saved">
+    <h3>{{cancion.name}}</h3> <span> by </span>
+   <h5> {{cancion.artists[0].name}}</h5>
 
-<div class="card-columns m-5">
+</div> -->
+
+
+<!-- <div class="card-columns m-5">
 
   <div *ngFor="let artista of artistas" class="card">
-      <img class="card-img-top" [src]="artista.images" alt="Card image cap">
+      <img class="card-img-top" src="{{artista.images | noimage}}" alt="Card image cap">
       <div class="card-body">
           <h5 class="card-title">{{artista.name}}</h5>
+          <p>folowers:{{artista.followers.total}}</p>
+         
       </div>
+    <button (click)="addToList(artista)">+</button>
   </div>
+</div> -->
+<button (click)="toggle()" class="btn waves-effect waves-light" >{{buttonName}}
+        <i class="fas fa-search"></i>
+</button>
+<div *ngIf="show">
+
+        <div class="row">
+                <div class="col">
+                    <input #term type="text" (keyup)="buscarCancion(term.value)" class="form-control" placeholder="Search songs by artist or name...">
+                </div>
+        </div>
+        <div class="card-columns m-5">
+
+                <div *ngFor="let cancion of tracks" class="card">
+                    <img class="card-img-top" src="{{cancion.album.images[0].url}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{cancion.name}}</h5>
+                        <h3>{{cancion.artists[0].name}}</h3>
+                        <!-- <p>Album:{{cancion.album.title}}</p>
+                        <audio>{{cancion.preview_url}}</audio> -->
+                        
+                    </div>
+                <button (click)="addToList(cancion)">+</button>
+                </div>
+        </div>
 </div>
+
+<h1>Your 9 songs:</h1>
+<div class="card-columns m-5">
+
+        <div *ngFor="let cancion of saved" class="card">
+            <img class="card-img-top" src="{{cancion.album.images[0].url}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{cancion.name}}</h5>
+                <h3>{{cancion.artists[0].name}}</h3>
+                <p>Album:{{cancion.album.title}}</p>
+                <audio>{{cancion.preview_url}}</audio>
+                
+            </div>
+        </div>
+ </div>
+
+ 
+ <!-- <button (click)="toggle()">{{buttonName}}</button> -->
+ 
