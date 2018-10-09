@@ -11,7 +11,7 @@ nav {
   margin-bottom:2px solid black;
 }
 
-#btn-dropdown-demo {
+#btn-sidenav-demo {
   background-color:white;
   color:black;
   border:none;
@@ -19,4 +19,15 @@ nav {
 }
 .blackify {
   color:black;
+}
+
+.flexy {
+  display:flex;
+  align-content:center;
+}
+.nav-img {
+ 
+  width:60%;
+  padding:15px;
+  
 }

@@ -9,6 +9,7 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {FormsModule} from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { MzButtonModule, MzInputModule, MzDropdownModule } from 'ngx-materialize';
+import { MzSidenavModule } from 'ngx-materialize';
 
 
 //components
@@ -53,7 +54,8 @@ import { NoimagePipe } from './pipes/noimage.pipe'
     MatCheckboxModule,
     MzButtonModule, 
     MzInputModule,
-    MzDropdownModule 
+    MzDropdownModule,
+    MzSidenavModule 
   ],
   providers: [AuthService, AddItemService, SpotifyService],
   bootstrap: [AppComponent]

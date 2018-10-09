@@ -27,9 +27,33 @@
  
 
   <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'><i style="color:black;"class="fas fa-bars"></i></a> -->
-
+  <mz-sidenav [id]="'sidenav-demo'" [collapseButtonId]="'btn-sidenav-demo'">
+ 
+      <mz-sidenav-header>
+          <h3 style="color:black;text-align:center">{{user.name}} {{user.lastName}}</h3>
+        </mz-sidenav-header>
+        <img class="nav-img" src="../assets/img/noimage.png"> 
+          <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader>
+          <mz-sidenav-link>
+          <h5 style="color:black;text-align:center">{{user.email}}</h5>
+ 
+    <mz-sidenav-divider></mz-sidenav-divider>  
+      <a href="/profile">Your profile</a>
+      </mz-sidenav-link>
+    <mz-sidenav-divider></mz-sidenav-divider>
+      <mz-sidenav-link [active]="true">
+        <a href="#">Explore</a>
+      </mz-sidenav-link>
+    <mz-sidenav-divider></mz-sidenav-divider>
+      <mz-sidenav-link>
+        <a style="color:black" (click)="logout()" class="waves-effect">Log out<i class="fas fa-sign-out-alt"></i></a>
+      </mz-sidenav-link>
+</mz-sidenav>
+ <button mz-button id="btn-sidenav-demo">
+  <i style="color:black;"class="fas fa-bars"></i>
+</button>
   <!-- Dropdown Structure -->
-  <mz-dropdown
+  <!-- <mz-dropdown
   [id]="'dropdown-demo'"
   [align]="'left'"
   [belowOrigin]="false"
@@ -48,7 +72,7 @@
 </mz-dropdown>
 
 <a mz-button id="btn-dropdown-demo" href="#"><i style="color:black;"class="fas fa-bars"></i></a>
-    <!-- <div>
+    <div>
         <i style="color:black;"class="fas fa-bars"></i>
     </div> -->
  
