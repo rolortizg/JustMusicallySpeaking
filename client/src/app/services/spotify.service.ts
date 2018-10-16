@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class SpotifyService {
   // BQD9F_DmUBzZ48VNPJDRdQrotrngL5ioz9DeVrBRPtvnF5pllniR8qliMRo1YUTPqh4evHCIsvSlnU4Ifmjas4rRNKDaxpNCVZDxxl0haa-_M8CUHyraquqXWStqA13Arz2JqtHsut0AH48f5w
-  token = 'BQAVqSLizCn_emwwGSrQVe5JwAmWB-LoXbIkxIjqKtiCGEWgFjgb8NQKnCQLBuxCTBXeAX46F-kJZ8g3lL_P5khCLvAiKQ0qWIKOzFbG_SR1hKkQNllkvG8o0cmjOMGv6gzRuYdSi1_88KQekQ';
+  token = 'BQA6XqwpdI2QOMlep7i9KIpwu6QgeGKWJqAKOuY327UEPDVDr0aiK2_xjOv4IzlNGUfct5_hnbdFLEjwO7xHbg_L5kV5qIQj2wVse63QSAmoe2RyKMYsHpXqHGnRtzrtjz-hVAcCUrW1QFj-Hg';
 
   constructor(private http: HttpClient) {
     this.getNewReleases();

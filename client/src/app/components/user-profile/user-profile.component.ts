@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {SpotifyService} from '../../services/spotify.service'
+import {SpotifyService} from '../../services/spotify.service';
+import { AddItemService } from '../../services/add/add-item.service'
 
 @Component({
   selector: 'app-user-profile',
@@ -8,15 +9,22 @@ import {SpotifyService} from '../../services/spotify.service'
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  song : any;
+  name: any;
   user:any
-  artistas: any = [];
+  artist: any = [];
+  description: any;
   tracks: any = [];
   saved: any = [];
   track: any;
   show: boolean = false;
   buttonName: any = 'Search for Songs';
   
-  constructor(private spotifyService: SpotifyService, private router: Router) { 
+  constructor(
+    private spotifyService: SpotifyService, 
+    private router: Router,
+    private addService: AddItemService
+  ) { 
     
   }
 
@@ -24,7 +32,7 @@ export class UserProfileComponent implements OnInit {
     this.spotifyService
         .getArtista(termino)
         .subscribe( dataResponse => {
-            this.artistas = dataResponse;
+            this.artist = dataResponse;
         });
   }
   buscarCancion(term: string) {
@@ -35,10 +43,18 @@ export class UserProfileComponent implements OnInit {
         });
   }
 
-  addToList(item){
-    this.saved.push(item)
-    console.log(this.saved)
+  addToList(){
+    return this.addService.addSong(this.song)
+    .subscribe( item => {
+      this.song = item
+      this.artist = item.artist
+      this.name = item.name
+      console.log(item)
+      // this.question['lawyer'] = this.lawyer.username
+    })
   }
+
+  
 
   toggle() {
     this.show = !this.show;

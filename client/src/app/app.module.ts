@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { MzButtonModule, MzInputModule, MzDropdownModule } from 'ngx-materialize';
 import { MzSidenavModule } from 'ngx-materialize';
+import { MzCollectionModule } from 'ngx-materialize'
 
 
 //components
@@ -30,7 +31,10 @@ import {routes} from './routes';
 import { AuthService } from './services/auth/auth.service';
 import { AddItemService } from './services/add/add-item.service';
 import { SpotifyService } from './services/spotify.service';
-import { NoimagePipe } from './pipes/noimage.pipe'
+import { NoimagePipe } from './pipes/noimage.pipe';
+import { CapitalizrPipe } from './pipes/capitalizr.pipe';
+import { AddSongComponent } from './components/add-song/add-song.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +45,8 @@ import { NoimagePipe } from './pipes/noimage.pipe'
     AddItemComponent,
     UserProfileComponent,
     NoimagePipe,
+    CapitalizrPipe,
+    AddSongComponent,
     
   ],
   imports: [
@@ -55,7 +61,8 @@ import { NoimagePipe } from './pipes/noimage.pipe'
     MzButtonModule, 
     MzInputModule,
     MzDropdownModule,
-    MzSidenavModule 
+    MzSidenavModule,
+    MzCollectionModule 
   ],
   providers: [AuthService, AddItemService, SpotifyService],
   bootstrap: [AppComponent]

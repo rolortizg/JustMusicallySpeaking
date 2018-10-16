@@ -7,12 +7,12 @@ import {Observable} from 'rxjs'
   providedIn: 'root'
 })
 export class AddItemService {
-  url = "http://localhost:3000/add/item/";
+  url = "http://localhost:3000/add/song/";
   id : any;
   user: any;
   constructor(private http: Http) { }
 
-  addItem(add): Observable<any>{
+  addSong(add): Observable<any>{
     return this.http.post(this.url ,add)
     .pipe(map((res:Response)=>res.json()))
   }

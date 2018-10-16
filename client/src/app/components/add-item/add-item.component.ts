@@ -27,7 +27,7 @@ export class AddItemComponent implements OnInit {
   }
 
   addItem(){
-    return this.addItemService.addItem(this.item)
+    return this.addItemService.addSong(this.item)
     .subscribe( item => {
       this.item = item
       // this.question['lawyer'] = this.lawyer.username

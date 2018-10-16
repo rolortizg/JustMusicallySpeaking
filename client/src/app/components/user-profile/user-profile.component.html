@@ -23,57 +23,75 @@
     <button (click)="addToList(artista)">+</button>
   </div>
 </div> -->
-<button (click)="toggle()" class="btn waves-effect waves-light" >{{buttonName}}
-        <i class="fas fa-search"></i>
-</button>
 
-<section class="left-part">
-        <div>
-            <h1 style="text-align:center">{{user.name}}</h1>
-            <img style="width:60%;" src="../../../assets/img/noimage.png">
-        </div>
-</section>
-
-<section class="right-part">
-        <div *ngIf="show">
-
-                <div class="row">
-                        <div class="col">
-                            <input #term type="text" (keyup)="buscarCancion(term.value)" class="form-control" placeholder="Search songs by artist or name...">
-                        </div>
-                </div>
-                <div class="card-columns m-5">
+<section>
+        <button (click)="toggle()" class="butoun btn waves-effect waves-light" >{{buttonName}}
+                <i class="fas fa-search"></i>
+        </button>
         
-                        <div *ngFor="let cancion of tracks" class="card">
-                            <img class="card-img-top" src="{{cancion.album.images[0].url}}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">{{cancion.name}}</h5>
-                                <h3>{{cancion.artists[0].name}}</h3>
-                                <!-- <p>Album:{{cancion.album.title}}</p>
-                                <audio>{{cancion.preview_url}}</audio> -->
-                                
-                            </div>
-                        <button (click)="addToList(cancion)">+</button>
-                        </div>
-                </div>
-        </div>
-        
-        <h1>{{user.name}}'s 9 songs:</h1>
-        <div class="card-columns m-5">
-        
-                <div *ngFor="let cancion of saved" class="card">
-                    <img class="card-img-top" src="{{cancion.album.images[0].url}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{cancion.name}}</h5>
-                        <h3>{{cancion.artists[0].name}}</h3>
-                        <p>Genres:{{cancion.genres}}</p>
-                        <audio>{{cancion.preview_url}}</audio>
-                        
-                    </div>
-                </div>
+        <div class="left-part">
+                <mz-collection style="text-align:center">
+                        <mz-collection-header><h4>{{user.name[0]}}.{{user.lastName[0] | capitalizr}}</h4></mz-collection-header>
+                        <mz-collection-item><img class="profilePic" style="width:60%;" src="../../../assets/img/noimage.png"><br></mz-collection-item>
+                        <mz-collection-item><strong>Followers:</strong><br><strong>Following:</strong></mz-collection-item>
+                        <mz-collection-item><strong>Bio</strong></mz-collection-item>
+                        <mz-collection-item><strong>Favorite genres</strong></mz-collection-item>
+                        <mz-collection-item><strong>Song of the week</strong></mz-collection-item>
+                </mz-collection>
+                <!-- <button>follow</button> -->
+            
+                    <!-- <div class="flx">
+                            <h1 style="text-align:center;margin-top:15px;">{{user.name[0]}}.{{user.lastName[0]}} </h1>
+                            
+                    </div> -->
+           
          </div>
         
+        <div class="right-part">
+                <div *ngIf="show">
+        
+                        <div class="row">
+                                <div class="col">
+                                    <input #term type="text" (keyup)="buscarCancion(term.value)" class="form-control" placeholder="Search songs by artist or name...">
+                                </div>
+                        </div>
+                        <div class="card-columns m-5">
+                
+                                <div *ngFor="let cancion of tracks" class="card">
+                                    <img class="card-img-top" src="{{cancion.album.images[0].url}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5>{{cancion.name}}</h5>
+                                        <h3>{{cancion.artists[0].name}}</h3>
+                                        <!-- <p>Album:{{cancion.album.title}}</p>
+                                        <audio>{{cancion.preview_url}}</audio> -->
+                                        
+                                    </div>
+                                <button (click)="addToList(song)">+</button>
+                                </div>
+                        </div>
+                </div>
+                
+                <h1>{{user.name}}'s 9 songs:</h1>
+                <div class="theCard card-columns m-5">
+                
+                        <div *ngFor="let cancion of saved" class="card"> 
+                            <img class="card-img-top" src="{{cancion.album.images[0].url}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h6 class="card-title">{{cancion.name}}</h6>
+                                <h4>{{cancion.artists[0].name}}</h4>
+                                <!-- <p>Genres:{{cancion.genres[0]}}</p> -->
+                                <!-- <audio>{{cancion.preview_url}}</audio> -->
+                                
+                            </div>
+                        </div>
+                 </div>
+                
+         </div>
+         
+         <!-- <button (click)="toggle()">{{buttonName}}</button> -->
+         
+        
 </section>
- 
- <!-- <button (click)="toggle()">{{buttonName}}</button> -->
- 
+<div>
+        <a [routerLink]="['add']">Add song</a>
+</div>
