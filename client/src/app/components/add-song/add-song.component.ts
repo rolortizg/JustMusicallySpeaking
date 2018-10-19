@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { AddItemService } from '../../services/add/add-item.service'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-song',
@@ -18,17 +19,20 @@ export class AddSongComponent implements OnInit {
   constructor(
     private addSongService: AddItemService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   addItem(){
     return this.addSongService.addSong(this.song)
     .subscribe( item => {
       this.song = item
+      this.router.navigate(['profile'])
       // this.question['lawyer'] = this.lawyer.username
     })
   }
 
   ngOnInit() {
+    // this.route.params.subscribe()
   }
 
 }

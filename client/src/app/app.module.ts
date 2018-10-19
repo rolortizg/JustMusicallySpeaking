@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MzButtonModule, MzInputModule, MzDropdownModule } from 'ngx-materialize';
 import { MzSidenavModule } from 'ngx-materialize';
 import { MzCollectionModule } from 'ngx-materialize'
+import { MzModalModule } from 'ngx-materialize'
 
 
 //components
@@ -62,7 +63,8 @@ import { AddSongComponent } from './components/add-song/add-song.component';
     MzInputModule,
     MzDropdownModule,
     MzSidenavModule,
-    MzCollectionModule 
+    MzCollectionModule,
+    MzModalModule 
   ],
   providers: [AuthService, AddItemService, SpotifyService],
   bootstrap: [AppComponent]

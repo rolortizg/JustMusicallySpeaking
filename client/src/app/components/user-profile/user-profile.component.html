@@ -24,6 +24,14 @@
   </div>
 </div> -->
 
+<div>
+    <a [routerLink]="['add']">Add song</a>
+    <router-outlet></router-outlet>
+</div>
+<div *ngFor="let song of songs">
+    <h3>{{song.name}}</h3>
+</div>
+
 <section>
         <button (click)="toggle()" class="butoun btn waves-effect waves-light" >{{buttonName}}
                 <i class="fas fa-search"></i>
@@ -66,7 +74,7 @@
                                         <audio>{{cancion.preview_url}}</audio> -->
                                         
                                     </div>
-                                <button (click)="addToList(song)">+</button>
+                                <button (click)="addToList()">+</button>
                                 </div>
                         </div>
                 </div>
@@ -92,6 +100,3 @@
          
         
 </section>
-<div>
-        <a [routerLink]="['add']">Add song</a>
-</div>

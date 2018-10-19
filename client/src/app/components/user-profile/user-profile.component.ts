@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {SpotifyService} from '../../services/spotify.service';
-import { AddItemService } from '../../services/add/add-item.service'
+import { AddItemService } from '../../services/add/add-item.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,6 +11,7 @@ import { AddItemService } from '../../services/add/add-item.service'
 })
 export class UserProfileComponent implements OnInit {
   song : any;
+  songs : Array<any>;
   name: any;
   user:any
   artist: any = [];
@@ -23,7 +25,8 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private spotifyService: SpotifyService, 
     private router: Router,
-    private addService: AddItemService
+    private addService: AddItemService,
+    private activeRoute: ActivatedRoute
   ) { 
     
   }
@@ -54,6 +57,12 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  searchForSongs(){
+    this.addService.getSongs()
+    .subscribe(songs => {
+      this.songs = songs
+    })
+  }
   
 
   toggle() {
@@ -70,6 +79,15 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('userToken'))
    if(!this.user)this.router.navigate(['login'])
+   
+   
+   this.addService.getSongs()
+   .subscribe(songs => {
+     this.songs = songs
+   })
+   
+   
   }
+  
 
 }
