@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import {Router} from '@angular/router'
+import {Router, ActivatedRoute} from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -8,6 +8,7 @@ import {Router} from '@angular/router'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  id:any
   hasAccount: boolean = true
   name:string = ''
   lastName:string = ''
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private activeRoute: ActivatedRoute
   ) { }
 
   handleLogin(){
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
     .subscribe(user=>{
       this.user = user;
       localStorage.setItem('userToken', JSON.stringify(user));
-      this.router.navigate(['profile']);
+      this.router.navigate(['profile/:id']);
       // this.router.navigate(['home', this.user._id]);
     })
 
@@ -55,8 +57,13 @@ export class LoginComponent implements OnInit {
   // }
 
   ngOnInit() {
+    this.activeRoute.params
+    .subscribe(params=>{
+      console.log(params.id)
+      this.id = params.id
+    })
     if(localStorage.getItem('userToken')){
-      this.router.navigate(['profile'])
+      this.router.navigate(['profile/:id'])
     }
   }
 

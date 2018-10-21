@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {SpotifyService} from '../../services/spotify.service';
 import { AddItemService } from '../../services/add/add-item.service';
 import { ActivatedRoute } from '@angular/router';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,12 +22,14 @@ export class UserProfileComponent implements OnInit {
   track: any;
   show: boolean = false;
   buttonName: any = 'Search for Songs';
+  id:any;
   
   constructor(
     private spotifyService: SpotifyService, 
     private router: Router,
     private addService: AddItemService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private authService: AuthService
   ) { 
     
   }
@@ -81,10 +84,28 @@ export class UserProfileComponent implements OnInit {
    if(!this.user)this.router.navigate(['login'])
    
    
+   this.activeRoute.params
+    .subscribe(params=>{
+      console.log(params.id)
+      this.id = params.id
+
+      this.authService.getOneUser(this.id)
+      .subscribe(user=>{
+  //      console.log(phone)
+        this.user = user
+      })
+
+    })
+
+    
    this.addService.getSongs()
    .subscribe(songs => {
      this.songs = songs
    })
+
+   
+
+   
    
    
   }

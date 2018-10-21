@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { 
-      path: 'profile', 
+      path: 'profile/:id', 
       component: UserProfileComponent,
       children:[
         {

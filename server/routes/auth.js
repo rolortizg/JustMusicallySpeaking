@@ -25,4 +25,22 @@ router.post('/logout', (req,res,next)=>{
     res.send('cerrado ??? ');
 });
 
+router.get('/users',(req,res)=>{
+    User.find()
+    .then(songs =>{
+      return res.status(200).json(songs);
+    })
+    .catch(e=>(e))  
+})
+
+router.get('/:id', (req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            if (!user) return res.status(404)
+            return res.status(200).json(user);
+        })
+        .catch(err => {
+            return res.status(500).json(err);
+        });
+});
 module.exports = router;

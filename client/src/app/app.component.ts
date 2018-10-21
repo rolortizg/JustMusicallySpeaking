@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,11 @@ export class AppComponent  implements OnInit{
   title = 'app';
   user: any;
 
+  
   logout(){
     localStorage.removeItem("userToken");
     localStorage.removeItem("userInfo");
+    
   }
 
   ngOnInit() {

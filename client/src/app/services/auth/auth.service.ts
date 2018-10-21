@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http'
+import { Http, Response } from '@angular/http'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
@@ -23,6 +23,17 @@ export class AuthService {
     return this.http.post(this.url + 'login', auth)
     .pipe(map(res=>res.json()))
   }
+
+  getUsers(): Observable<any>{
+    return this.http.get(this.url + 'users')
+    .pipe(map((res:Response)=>res.json()))
+  }
+
+  getOneUser(id){
+    return this.http.get(this.url + id)
+        .pipe(map((res: Response)=>res.json()));                                
+  }
+
 
   // , {withCredentials:true}
 }

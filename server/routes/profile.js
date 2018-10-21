@@ -20,10 +20,11 @@ function isLoggedIn(req,res,next){
 }
 
 
-router.get('/profile',isAuthenticated, (req, res) => {
+router.get('/profile/:id',isAuthenticated, (req, res) => {
   console.log(req.user)
   User.findById(req.user._id)
       .then(user => {
+        if (!lawyers) return res.status(404)
           return res.status(200).json(user); //200: The request was fulfilled.                       
       })
       .catch(e => next(e))
