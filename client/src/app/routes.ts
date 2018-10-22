@@ -8,6 +8,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AddSongComponent } from './components/add-song/add-song.component'
+import { ExploreUsersComponent } from './components/explore-users/explore-users.component';
 
 
 
@@ -27,6 +28,8 @@ export const routes: Routes = [
         }
       ]
     },
+    { path: 'explore/users', component: ExploreUsersComponent },
+
     // {
     //   path: 'signup',
     //   component: SignupFormComponent

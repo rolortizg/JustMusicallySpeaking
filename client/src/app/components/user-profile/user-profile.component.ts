@@ -4,6 +4,7 @@ import {SpotifyService} from '../../services/spotify.service';
 import { AddItemService } from '../../services/add/add-item.service';
 import { ActivatedRoute } from '@angular/router';
 import {AuthService} from '../../services/auth/auth.service';
+import { ListService } from '../../services/list/list.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,10 +12,15 @@ import {AuthService} from '../../services/auth/auth.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  song : any;
+  songId : any;
+  song:any;
   songs : Array<any>;
   name: any;
+  profUser:any
+  profUserId:any
+  userId:any
   user:any
+  sameUser: boolean = false
   artist: any = [];
   description: any;
   tracks: any = [];
@@ -23,13 +29,18 @@ export class UserProfileComponent implements OnInit {
   show: boolean = false;
   buttonName: any = 'Search for Songs';
   id:any;
+
+  listObj: any = {
+    user: '',
+  }
   
   constructor(
     private spotifyService: SpotifyService, 
     private router: Router,
     private addService: AddItemService,
     private activeRoute: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private listService: ListService
   ) { 
     
   }
@@ -49,16 +60,7 @@ export class UserProfileComponent implements OnInit {
         });
   }
 
-  addToList(){
-    return this.addService.addSong(this.song)
-    .subscribe( item => {
-      this.song = item
-      this.artist = item.artist
-      this.name = item.name
-      console.log(item)
-      // this.question['lawyer'] = this.lawyer.username
-    })
-  }
+  
 
   searchForSongs(){
     this.addService.getSongs()
@@ -80,22 +82,32 @@ export class UserProfileComponent implements OnInit {
   
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('userToken'))
-   if(!this.user)this.router.navigate(['login'])
+  //   this.user = JSON.parse(localStorage.getItem('userToken'))
+  //  if(!this.user)this.router.navigate(['login'])
    
    
    this.activeRoute.params
     .subscribe(params=>{
       console.log(params.id)
-      this.id = params.id
+      this.profUserId = params.id
 
-      this.authService.getOneUser(this.id)
+      this.authService.getOneUser(this.profUserId)
       .subscribe(user=>{
   //      console.log(phone)
-        this.user = user
+        this.profUser = user
       })
 
     })
+    this.authService.getLoggedUser()
+    .subscribe(user=>{
+      this.user = user;
+      this.userId = user._id;
+      if (this.userId === this.profUserId) {
+        this.sameUser = true;
+      }
+      })
+
+    
 
     
    this.addService.getSongs()
@@ -104,11 +116,31 @@ export class UserProfileComponent implements OnInit {
    })
 
    
-
-   
-   
-   
   }
+//not ngINIt
+
+addToList(){
+    this.listObj.user = this.user;
+   
+  this.listService.createList(this.listObj)
+  .subscribe( list => {
+    let id = list._id;
+    this.songId = id;
+    this.user.songs.push(this.songId);
+    console.log(this.user.songs)
+    console.log(this.user)
+    this.updateUser(this.user);
+    
+    console.log(list)
+    // this.question['lawyer'] = this.lawyer.username
+  })
+}
+updateUser(user){
+  this.authService.updateUser(this.user)
+  .subscribe(()=>{
+    // this.router.navigate(['city-survey', this.listId]);
+  })
+}
   
 
 }

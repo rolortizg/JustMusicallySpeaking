@@ -7,7 +7,7 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class AuthService {
-  url = "http://localhost:3000/auth/";
+  url = "http://localhost:3000/";
   id : any;
   constructor(
     private http: Http
@@ -32,6 +32,18 @@ export class AuthService {
   getOneUser(id){
     return this.http.get(this.url + id)
         .pipe(map((res: Response)=>res.json()));                                
+  }
+
+  updateUser(user) {
+    return this.http.put(this.url +'profile/' + user._id, user)
+    .pipe(map((res: Response)=>res.json()))
+  }
+
+  getLoggedUser(){
+    return this.http.get(this.url + 'loggedUser', {withCredentials:true})
+    .pipe(map(res=>{
+      return res.json()
+    }))
   }
 
 

@@ -10,6 +10,7 @@ const songSchema = new require('mongoose').Schema({
         type:Number,
         default:0
     },
+   
     
 },{
     timestamps:{

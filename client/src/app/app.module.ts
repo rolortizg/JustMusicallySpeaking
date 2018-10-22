@@ -32,9 +32,11 @@ import {routes} from './routes';
 import { AuthService } from './services/auth/auth.service';
 import { AddItemService } from './services/add/add-item.service';
 import { SpotifyService } from './services/spotify.service';
+import { ListService } from './services/list/list.service';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { CapitalizrPipe } from './pipes/capitalizr.pipe';
 import { AddSongComponent } from './components/add-song/add-song.component';
+import { ExploreUsersComponent } from './components/explore-users/explore-users.component';
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import { AddSongComponent } from './components/add-song/add-song.component';
     NoimagePipe,
     CapitalizrPipe,
     AddSongComponent,
+    ExploreUsersComponent,
     
   ],
   imports: [
@@ -66,7 +69,7 @@ import { AddSongComponent } from './components/add-song/add-song.component';
     MzCollectionModule,
     MzModalModule 
   ],
-  providers: [AuthService, AddItemService, SpotifyService],
+  providers: [AuthService, AddItemService, SpotifyService, ListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

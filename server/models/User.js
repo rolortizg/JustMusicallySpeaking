@@ -9,6 +9,10 @@ const userSchema = new require('mongoose').Schema({
         type:String,
         default:'FB'
     },
+    songs:[{
+        type:Schema.Types.ObjectId,
+        ref:'Song'
+    }],
     // image: String,
     email: String,
     // profile:{

@@ -24,14 +24,7 @@
   </div>
 </div> -->
 
-<div>
-    <a [routerLink]="['add']">Add song</a>
-    <router-outlet></router-outlet>
-</div>
-<div *ngFor="let song of songs">
-    <h3>{{song.name}}</h3>
-    <p>{{song.description}}</p>
-</div>
+
 
 <section>
         <button (click)="toggle()" class="butoun btn waves-effect waves-light" >{{buttonName}}
@@ -81,13 +74,25 @@
                 </div>
                 
                 <h1>{{user.name}}'s 9 songs:</h1>
-                <div class="theCard card-columns m-5">
                 
-                        <div *ngFor="let cancion of saved" class="card"> 
-                            <img class="card-img-top" src="{{cancion.album.images[0].url}}" alt="Card image cap">
+                <!-- <div *ngFor="let song of songs">
+                    <h3>{{song.name}}</h3>
+                    <p>{{song.description}}</p>
+                </div> -->
+
+                <div>
+                    <a [routerLink]="['add']">Add song</a>
+                    <router-outlet></router-outlet>
+                </div>
+                <div class="theCard card-columns m-5">
+                    
+                        <div *ngFor="let song of songs" class="card"> 
+                            <!-- <img class="card-img-top" src="{{cancion.album.images[0].url | noimage}}" alt="Card image cap"> -->
                             <div class="card-body">
-                                <h6 class="card-title">{{cancion.name}}</h6>
-                                <h4>{{cancion.artists[0].name}}</h4>
+                                <h6 class="card-title">{{song.name}}</h6>
+                                <h4>{{song.artist}}</h4>
+                                <p>{{song.description}}</p>
+                                <button (click)="addToList()">+</button>
                                 <!-- <p>Genres:{{cancion.genres[0]}}</p> -->
                                 <!-- <audio>{{cancion.preview_url}}</audio> -->
                                 

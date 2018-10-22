@@ -8,7 +8,24 @@ const passport = require('passport');
 // const multer = require('multer');
 // const upload = multer({dest: './public/assets'});
 
+function isAuthenticated(req,res,next){
+    if(req.isAuthenticated()){
+        console.log(req.user)
+        return next()
+    }else{
+        res.json({message:"You don't have permission"});
+    }
+}
 
+router.get('/loggedUser', isAuthenticated, (req,res)=>{
+    User.findById(req.user._id)
+    .populate('songs')
+    .then(user=>{
+        console.log(user)
+        return res.json(user)
+    })
+    .catch(e=>console.log(e))
+});
 
 router.post('/signup',(req,res,next) => {
     User.register(req.body, req.body.password)
@@ -17,7 +34,11 @@ router.post('/signup',(req,res,next) => {
 });
 
 router.post('/login', passport.authenticate('local'), (req,res,next) => {
-    return res.json(req.user);
+    User.findById(req.user._id)
+    .populate('songs')
+    .then(user => res.json(user))
+    .catch(e => res.json(e))
+   
 })
 
 router.post('/logout', (req,res,next)=>{
@@ -43,4 +64,13 @@ router.get('/:id', (req, res) => {
             return res.status(500).json(err);
         });
 });
+
+router.put('/profile/:id', (req,res,next) => {
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        .then(user => {
+            return res.status(202).json(user)
+        }).catch(err => {
+            return res.status(404).json(err);
+        })
+  })
 module.exports = router;
