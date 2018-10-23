@@ -17,10 +17,7 @@ export class AddItemService {
     .pipe(map((res:Response)=>res.json()))
   }
   
-  createList(list): Observable<any>{
-    return this.http.post(this.url, list)
-    .pipe(map((res: Response)=>res.json()))
-  }
+  
   getSongs(): Observable<any>{
     return this.http.get(this.url)
     .pipe(map((res:Response)=>res.json()))

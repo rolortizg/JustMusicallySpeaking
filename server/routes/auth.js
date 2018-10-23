@@ -17,7 +17,7 @@ function isAuthenticated(req,res,next){
     }
 }
 
-router.get('/loggedUser', isAuthenticated, (req,res)=>{
+router.get('/loggedUser',isAuthenticated, (req,res)=>{
     User.findById(req.user._id)
     .populate('songs')
     .then(user=>{
@@ -41,10 +41,11 @@ router.post('/login', passport.authenticate('local'), (req,res,next) => {
    
 })
 
-router.post('/logout', (req,res,next)=>{
+router.get('/logout', function(req, res){
     req.logout();
-    res.send('cerrado ??? ');
-});
+    req.session.destroy()
+    res.redirect('/');
+  });
 
 router.get('/users',(req,res)=>{
     User.find()
@@ -54,7 +55,7 @@ router.get('/users',(req,res)=>{
     .catch(e=>(e))  
 })
 
-router.get('/:id', (req, res) => {
+router.get('/profile/:id', (req, res) => {
     User.findById(req.params.id)
         .then(user => {
             if (!user) return res.status(404)

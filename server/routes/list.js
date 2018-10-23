@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const path = require('path');
 const List      = require('../models/List');
 const User      = require('../models/User');
 
@@ -8,6 +9,20 @@ router.post('/profile', (req,res,next) => {
     res.json(list)
   })
   .catch(e=>res.json(e))
+})
+
+router.get('/list-detail/:id', (req,res) => {
+  List.findById(req.params.id)
+  .populate('songs')
+  .populate('user')
+  .populate('savedBy')
+  .then(list => {
+    if (!list) return res.status(404);
+    return res.status(200).json(list);
+  })
+  .catch(err => {
+    return res.status(500).json(err);
+  })
 })
 
 // router.get('/list-detail/:id', (req,res) => {

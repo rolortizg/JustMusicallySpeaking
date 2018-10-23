@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     // products: [],
   } //object used for all authentication
   user: any;
+  userToken:any;
 
   constructor(
     private authService: AuthService,
@@ -69,10 +70,10 @@ export class LoginComponent implements OnInit {
 //     })
 
     //Aqui esta mi problem
-    this.user = JSON.parse(localStorage.getItem('userToken'))
+    this.userToken = JSON.parse(localStorage.getItem('userToken'))
     if(localStorage.getItem('userToken')){
       
-      this.router.navigate(['/profile/', this.user._id])
+      this.router.navigate(['/profile/', this.userToken._id])
     }
   
   }

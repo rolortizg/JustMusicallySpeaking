@@ -13,6 +13,18 @@ export class AuthService {
     private http: Http
   ) { }
 
+  logout(){
+    localStorage.removeItem('userToken')
+  }
+
+  getLoggedUser(){
+    return this.http.get(this.url + 'loggedUser', {withCredentials:true})
+    .pipe(map(res=>{
+      return res.json()
+    }))
+  }
+  
+
   signup(auth): Observable<any>{
 
     return this.http.post(this.url + 'signup', auth)
@@ -30,7 +42,7 @@ export class AuthService {
   }
 
   getOneUser(id){
-    return this.http.get(this.url + id)
+    return this.http.get(this.url + 'profile/' + id)
         .pipe(map((res: Response)=>res.json()));                                
   }
 
@@ -39,14 +51,7 @@ export class AuthService {
     .pipe(map((res: Response)=>res.json()))
   }
 
-  getLoggedUser(){
-    return this.http.get(this.url + 'loggedUser', {withCredentials:true})
-    .pipe(map(res=>{
-      return res.json()
-    }))
-  }
 
 
-  // , {withCredentials:true}
 }
 

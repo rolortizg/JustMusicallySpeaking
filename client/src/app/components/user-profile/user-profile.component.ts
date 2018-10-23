@@ -13,12 +13,16 @@ import { ListService } from '../../services/list/list.service';
 })
 export class UserProfileComponent implements OnInit {
   songId : any;
+  savedBy: any;
+  userToken:any
   song:any;
   songs : Array<any>;
   name: any;
   profUser:any
-  profUserId:any
-  userId:any
+  profUserId:string = '';
+  userId:string = '';
+  listId:string = ';';
+  list: {};
   user:any
   sameUser: boolean = false
   artist: any = [];
@@ -28,10 +32,12 @@ export class UserProfileComponent implements OnInit {
   track: any;
   show: boolean = false;
   buttonName: any = 'Search for Songs';
-  id:any;
+  
 
   listObj: any = {
     user: '',
+    // songs:'',
+    savedBy:'',
   }
   
   constructor(
@@ -82,30 +88,38 @@ export class UserProfileComponent implements OnInit {
   
 
   ngOnInit() {
-  //   this.user = JSON.parse(localStorage.getItem('userToken'))
-  //  if(!this.user)this.router.navigate(['login'])
+    this.userToken = JSON.parse(localStorage.getItem('userToken'))
+   if(!this.userToken)this.router.navigate(['login'])
    
    
    this.activeRoute.params
     .subscribe(params=>{
-      console.log(params.id)
+      
       this.profUserId = params.id
+
+    })
 
       this.authService.getOneUser(this.profUserId)
       .subscribe(user=>{
   //      console.log(phone)
         this.profUser = user
+        console.log(this.profUser)
       })
 
-    })
-    this.authService.getLoggedUser()
-    .subscribe(user=>{
-      this.user = user;
-      this.userId = user._id;
-      if (this.userId === this.profUserId) {
-        this.sameUser = true;
-      }
-      })
+      this.authService.getLoggedUser()
+      .subscribe(user=>{
+        console.log(user)
+        this.user = user;
+        console.log(this.user)
+        this.userId = user._id;
+       
+        // if (this.userId === this.profUserId) {
+        //   this.sameUser = true;
+        // }
+        })
+
+  
+  
 
     
 
@@ -120,24 +134,30 @@ export class UserProfileComponent implements OnInit {
 //not ngINIt
 
 addToList(){
-    this.listObj.user = this.user;
+    this.listObj.user = this.profUser;
+    this.listObj.savedBy = this.profUser._id
    
   this.listService.createList(this.listObj)
   .subscribe( list => {
+    this.list = list
+    // this.savedBy = list.savedBy;
     let id = list._id;
-    this.songId = id;
-    this.user.songs.push(this.songId);
-    console.log(this.user.songs)
-    console.log(this.user)
-    this.updateUser(this.user);
+    this.listId = id;
+    this.profUser.songs.push(this.listId);
+    
+    console.log(this.profUser.songs)
+    console.log(this.profUser)
+    this.updateUser(this.profUser);
     
     console.log(list)
     // this.question['lawyer'] = this.lawyer.username
   })
 }
+
 updateUser(user){
-  this.authService.updateUser(this.user)
+  this.authService.updateUser(this.profUser)
   .subscribe(()=>{
+    console.log(this.profUser)
     // this.router.navigate(['city-survey', this.listId]);
   })
 }

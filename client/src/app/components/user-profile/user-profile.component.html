@@ -33,7 +33,7 @@
         
         <div class="left-part">
                 <mz-collection style="text-align:center">
-                        <mz-collection-header><h4>{{user.name[0]}}.{{user.lastName[0] | capitalizr}}</h4></mz-collection-header>
+                        <mz-collection-header><h4>{{profUser.name[0]}}.{{profUser.lastName[0] | capitalizr}}</h4></mz-collection-header>
                         <mz-collection-item><img class="profilePic" style="width:60%;" src="../../../assets/img/noimage.png"><br></mz-collection-item>
                         <mz-collection-item><strong>Followers:</strong><br><strong>Following:</strong></mz-collection-item>
                         <mz-collection-item><strong>Bio</strong></mz-collection-item>
@@ -50,7 +50,9 @@
          </div>
         
         <div class="right-part">
-                <div *ngIf="show">
+
+            <!-- trying without it -->
+                <!-- <div *ngIf="show">
         
                         <div class="row">
                                 <div class="col">
@@ -64,23 +66,23 @@
                                     <div class="card-body">
                                         <h5>{{cancion.name}}</h5>
                                         <h3>{{cancion.artists[0].name}}</h3>
-                                        <!-- <p>Album:{{cancion.album.title}}</p>
-                                        <audio>{{cancion.preview_url}}</audio> -->
+                                        <p>Album:{{cancion.album.title}}</p>
+                                        <audio>{{cancion.preview_url}}</audio> 
                                         
                                     </div>
                                 <button (click)="addToList()">+</button>
                                 </div>
                         </div>
-                </div>
+                </div> -->
                 
-                <h1>{{user.name}}'s 9 songs:</h1>
+                <h1>{{profUser.name}}'s 9 songs:</h1>
                 
                 <!-- <div *ngFor="let song of songs">
                     <h3>{{song.name}}</h3>
                     <p>{{song.description}}</p>
                 </div> -->
 
-                <div>
+                <div *ngIf="profUser._id == userToken._id">
                     <a [routerLink]="['add']">Add song</a>
                     <router-outlet></router-outlet>
                 </div>
@@ -92,7 +94,7 @@
                                 <h6 class="card-title">{{song.name}}</h6>
                                 <h4>{{song.artist}}</h4>
                                 <p>{{song.description}}</p>
-                                <button (click)="addToList()">+</button>
+                                <button *ngIf="profUser._id == userToken._id" (click)="addToList()">+</button>
                                 <!-- <p>Genres:{{cancion.genres[0]}}</p> -->
                                 <!-- <audio>{{cancion.preview_url}}</audio> -->
                                 
