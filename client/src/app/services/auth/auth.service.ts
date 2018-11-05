@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
+import {Router} from '@angular/router'
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,14 @@ export class AuthService {
   url = "http://localhost:3000/";
   id : any;
   constructor(
-    private http: Http
+    private http: Http,
+    private router: Router
   ) { }
 
   logout(){
-    localStorage.removeItem('userToken')
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('userInfo');
+    this.router.navigate(['home']);
   }
 
   getLoggedUser(){
@@ -32,7 +36,7 @@ export class AuthService {
   }
 
   login(auth): Observable<string>{
-    return this.http.post(this.url + 'login', auth)
+    return this.http.post(this.url + 'login', auth, {withCredentials:true})
     .pipe(map(res=>res.json()))
   }
 

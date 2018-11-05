@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth/auth.service'
 })
 export class AddSongComponent implements OnInit {
   song = {};
+  songs: Array<any>;
   name: string;
   artist:string;
   description:string;
@@ -23,9 +24,8 @@ export class AddSongComponent implements OnInit {
   profUserId:any;
   profUser:any;
 
-  listObj: any = {
+  songObj: any = {
     user: '',
-    listName: '',
     
   }
 
@@ -38,17 +38,18 @@ export class AddSongComponent implements OnInit {
   ) { }
 
   addToList(){
-    this.listObj.user = this.user;
+    this.songObj.user = this.profUser._id;
+  
    
-  this.listService.createList(this.listObj)
-  .subscribe( list => {
-    let id = list._id;
+  this.addSongService.addSong(this.songObj)
+  .subscribe( song => {
+    let id = song._id;
     this.songId = id;
-    this.user.songs.push(this.songId);
-    console.log(this.user.songs)
-    this.updateUser(this.user);
+    this.profUser.songs.push(this.songId);
+    console.log(this.profUser.songs)
+    this.updateUser(this.profUser);
     
-    console.log(list)
+    console.log(song)
     // this.question['lawyer'] = this.lawyer.username
   })
 }
@@ -68,7 +69,7 @@ export class AddSongComponent implements OnInit {
   }
   
   updateUser(user){
-    this.authService.updateUser(this.user)
+    this.authService.updateUser(this.profUser)
     .subscribe(()=>{
       // this.router.navigate(['city-survey', this.listId]);
     })
@@ -76,18 +77,21 @@ export class AddSongComponent implements OnInit {
 
   ngOnInit() {
     // this.route.params.subscribe()
-    this.activeRoute.params
+    this.activeRoute.parent.params
     .subscribe(params=>{
       this.profUserId = params.id;
+      console.log(params)
     })
     this.authService.getOneUser(this.profUserId)
     .subscribe(user=>{
       this.profUser = user;
+      console.log(this.profUser)
     })
     this.authService.getLoggedUser()
     .subscribe(user=>{
       this.user = user;
       this.userId = user._id;
+      console.log(user)
       // if (this.userId === this.profUserId) {
       //   this.sameUser = true;
       // }

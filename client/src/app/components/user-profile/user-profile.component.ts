@@ -14,7 +14,9 @@ import { ListService } from '../../services/list/list.service';
 export class UserProfileComponent implements OnInit {
   songId : any;
   savedBy: any;
-  userToken:any
+  userToken:any;
+  songName: any;
+  profSongs: Array<any>
   song:any;
   songs : Array<any>;
   name: any;
@@ -25,6 +27,7 @@ export class UserProfileComponent implements OnInit {
   list: {};
   user:any
   sameUser: boolean = false
+  sameSongs: boolean = false
   artist: any = [];
   description: any;
   tracks: any = [];
@@ -68,12 +71,14 @@ export class UserProfileComponent implements OnInit {
 
   
 
-  searchForSongs(){
-    this.addService.getSongs()
-    .subscribe(songs => {
-      this.songs = songs
-    })
-  }
+  // searchForSongs(){
+  //   this.addService.getSongs()
+  //   .subscribe(songs => {
+  //     this.songs = songs
+  //   })
+  // }
+
+  
   
 
   toggle() {
@@ -93,7 +98,7 @@ export class UserProfileComponent implements OnInit {
    
    
    this.activeRoute.params
-    .subscribe(params=>{
+       .subscribe(params=>{
       
       this.profUserId = params.id
 
@@ -113,21 +118,21 @@ export class UserProfileComponent implements OnInit {
         console.log(this.user)
         this.userId = user._id;
        
-        // if (this.userId === this.profUserId) {
-        //   this.sameUser = true;
-        // }
+        if (this.userId === this.profUserId) {
+          this.sameUser = true;
+        }
         })
 
-  
-  
-
     
-
-    
-   this.addService.getSongs()
-   .subscribe(songs => {
-     this.songs = songs
-   })
+    this.addService.getSongs()
+    .subscribe(songs => {
+      this.songId = songs.user
+      this.songs = songs
+      this.songName = songs.name;
+      if (this.profUserId === this.songId) {
+        this.sameSongs = true;
+      }
+    })
 
    
   }
@@ -143,9 +148,12 @@ addToList(){
     // this.savedBy = list.savedBy;
     let id = list._id;
     this.listId = id;
-    this.profUser.songs.push(this.listId);
+    this.profUser.songs.push(this.songs);
     
-    console.log(this.profUser.songs)
+    this.profUser.songs.name.push(this.songName);
+    
+    
+    console.log(this.profSongs)
     console.log(this.profUser)
     this.updateUser(this.profUser);
     

@@ -17,6 +17,7 @@ router.post('/song', (req,res,next) => {
 
 router.get('/song', (req,res,next)=>{
   Song.find()
+  .populate('user')
   .then(songs =>{
     return res.status(200).json(songs);
   })

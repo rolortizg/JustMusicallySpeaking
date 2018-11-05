@@ -3,6 +3,10 @@ const Schema = require('mongoose').Schema;
 
 const songSchema = new require('mongoose').Schema({
     name:String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     artist:String,
     image:String,
     description: String,

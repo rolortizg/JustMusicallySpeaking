@@ -50,7 +50,7 @@ spotifyApi.clientCredentialsGrant()
 // cors
 app.use(require('cors')({
   credentials: true,
-  origin: 'http://localhost:4200'
+  origin: true
 }))
 
 app.use(session({
@@ -93,6 +93,7 @@ app.use(multer({ dest: '../public/assets' }).single('image'));
 const passport = require('./helpers/passport')
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 
 app.set('views', path.join(__dirname, 'views'));

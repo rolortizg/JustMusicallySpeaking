@@ -1,9 +1,9 @@
 <form>
     <!-- <input type="file" name="image" [(ngModel)]="item.image"> -->
-    <input placeholder="Name of song" type="text" name="name" [(ngModel)]="song.name">
-    <input placeholder="Description of song" type="textarea" name="description" [(ngModel)]="song.description">
-    <input placeholder="Artist" type="text" name="artist" [(ngModel)]="song.artist">
-    <button (click)="addItem()" type="submit">Upload</button>
+    <input placeholder="Name of song" type="text" name="name" [(ngModel)]="songObj.name">
+    <input placeholder="Description of song" type="textarea" name="description" [(ngModel)]="songObj.description">
+    <input placeholder="Artist" type="text" name="artist" [(ngModel)]="songObj.artist">
+    <!-- <button (click)="addItem()" type="submit">Upload</button> -->
     <button (click)="addToList()" >+</button>
 </form>
   

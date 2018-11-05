@@ -82,25 +82,32 @@
                     <p>{{song.description}}</p>
                 </div> -->
 
-                <div *ngIf="profUser._id == userToken._id">
+                <div *ngIf="sameUser">
                     <a [routerLink]="['add']">Add song</a>
                     <router-outlet></router-outlet>
                 </div>
-                <div class="theCard card-columns m-5">
+                <div *ngIf="sameUser">
+                    <p>nigga we made it!</p>
+                </div>
+               <div *ngFor="let song of user.songs">
+                    <h6>{{song.name}}</h6>
+               </div>
+                
+                <!-- <div class="theCard card-columns m-5">
                     
-                        <div *ngFor="let song of songs" class="card"> 
-                            <!-- <img class="card-img-top" src="{{cancion.album.images[0].url | noimage}}" alt="Card image cap"> -->
+                        <div *ngFor="let song of songs" class="card">
+                    
                             <div class="card-body">
                                 <h6 class="card-title">{{song.name}}</h6>
                                 <h4>{{song.artist}}</h4>
                                 <p>{{song.description}}</p>
-                                <button *ngIf="profUser._id == userToken._id" (click)="addToList()">+</button>
-                                <!-- <p>Genres:{{cancion.genres[0]}}</p> -->
-                                <!-- <audio>{{cancion.preview_url}}</audio> -->
+                                <button *ngIf="sameUser" (click)="addToList()">+</button>
+                               
                                 
                             </div>
+                        
                         </div>
-                 </div>
+                 </div> -->
                 
          </div>
          

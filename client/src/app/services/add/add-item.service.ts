@@ -22,4 +22,6 @@ export class AddItemService {
     return this.http.get(this.url)
     .pipe(map((res:Response)=>res.json()))
   }
+
+  
 }
