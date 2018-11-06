@@ -89,25 +89,27 @@
                 <div *ngIf="sameUser">
                     <p>nigga we made it!</p>
                 </div>
-               <div *ngFor="let song of user.songs">
-                    <h6>{{song.name}}</h6>
-               </div>
+               <!-- <div *ngFor="let song of profUser.songs">
+                    <h4>{{song.name}}</h4>
+                    <h6>{{song.artist}}</h6>
+                    <p>{{song.name}}</p>
+               </div> -->
                 
-                <!-- <div class="theCard card-columns m-5">
+                <div class="theCard card-columns m-5">
                     
-                        <div *ngFor="let song of songs" class="card">
+                        <div *ngFor="let song of profUser.songs" class="card">
                     
                             <div class="card-body">
                                 <h6 class="card-title">{{song.name}}</h6>
                                 <h4>{{song.artist}}</h4>
                                 <p>{{song.description}}</p>
                                 <button *ngIf="sameUser" (click)="addToList()">+</button>
-                               
+                               <button (click)="like()">Like</button>
                                 
                             </div>
                         
                         </div>
-                 </div> -->
+                 </div>
                 
          </div>
          

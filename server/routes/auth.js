@@ -57,6 +57,7 @@ router.get('/users',(req,res)=>{
 
 router.get('/profile/:id', (req, res) => {
     User.findById(req.params.id)
+    .populate('songs')
         .then(user => {
             if (!user) return res.status(404)
             return res.status(200).json(user);

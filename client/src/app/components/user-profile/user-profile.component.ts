@@ -18,6 +18,7 @@ export class UserProfileComponent implements OnInit {
   songName: any;
   profSongs: Array<any>
   song:any;
+  likeSong:any;
   songs : Array<any>;
   name: any;
   profUser:any
@@ -53,6 +54,8 @@ export class UserProfileComponent implements OnInit {
   ) { 
     
   }
+
+ 
 
   buscar(termino: string) {
     this.spotifyService
@@ -106,8 +109,9 @@ export class UserProfileComponent implements OnInit {
 
       this.authService.getOneUser(this.profUserId)
       .subscribe(user=>{
-  //      console.log(phone)
+       console.log(user)
         this.profUser = user
+        
         console.log(this.profUser)
       })
 
@@ -126,10 +130,11 @@ export class UserProfileComponent implements OnInit {
     
     this.addService.getSongs()
     .subscribe(songs => {
-      this.songId = songs.user
+      this.listId = songs.user
+      this.songId = songs.id
       this.songs = songs
       this.songName = songs.name;
-      if (this.profUserId === this.songId) {
+      if (this.profUserId === this.listId) {
         this.sameSongs = true;
       }
     })
@@ -150,24 +155,62 @@ addToList(){
     this.listId = id;
     this.profUser.songs.push(this.songs);
     
-    this.profUser.songs.name.push(this.songName);
     
     
-    console.log(this.profSongs)
+    
+    
     console.log(this.profUser)
     this.updateUser(this.profUser);
     
-    console.log(list)
+    console.log(list) //try profUser
     // this.question['lawyer'] = this.lawyer.username
   })
 }
 
-updateUser(user){
-  this.authService.updateUser(this.profUser)
+// addToList(){
+//   this.songObj.user = this.profUser._id;
+
+ 
+// this.addSongService.addSong(this.songObj)
+// .subscribe( song => {
+//   let id = song._id;
+//   this.songId = id;
+//   this.profUser.songs.push(this.songId);
+//   console.log(this.profUser.songs)
+//   this.updateUser(this.profUser);
+  
+//   console.log(song)
+//   // this.question['lawyer'] = this.lawyer.username
+// })
+// }
+
+like(){
+  this.addService.getOneSong(this.songId)
+  .subscribe(song => {
+    this.likeSong = song
+    this.likeSong.likes++
+    this.updateSong(this.likeSong)
+  })
+ 
+  
+}
+
+updateSong(song){
+  this.addService.updateSong(this.song)
   .subscribe(()=>{
-    console.log(this.profUser)
+    console.log(this.song)
+  })
+}
+
+updateUser(user){
+  this.authService.updateUser(this.user)
+  .subscribe(()=>{
+    console.log(this.user)
     // this.router.navigate(['city-survey', this.listId]);
   })
+
+ 
+
 }
   
 

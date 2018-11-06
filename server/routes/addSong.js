@@ -24,4 +24,24 @@ router.get('/song', (req,res,next)=>{
   .catch(e=>(e))
 })
 
+router.get('/:id', (req, res) => {
+  Song.findById(req.params.id)
+      .then(user => {
+          if (!user) return res.status(404)
+          return res.status(200).json(user);
+      })
+      .catch(err => {
+          return res.status(500).json(err);
+      });
+});
+
+router.put('/:id', (req,res,next) => {
+  Song.findByIdAndUpdate(req.params.id, req.body, {new:true})
+      .then(user => {
+          return res.status(202).json(user)
+      }).catch(err => {
+          return res.status(404).json(err);
+      })
+})
+
 module.exports = router;
