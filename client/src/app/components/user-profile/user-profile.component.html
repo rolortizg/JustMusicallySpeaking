@@ -35,7 +35,8 @@
                 <mz-collection style="text-align:center">
                         <mz-collection-header><h4>{{profUser.name[0]}}.{{profUser.lastName[0] | capitalizr}}</h4></mz-collection-header>
                         <mz-collection-item><img class="profilePic" style="width:60%;" src="../../../assets/img/noimage.png"><br></mz-collection-item>
-                        <mz-collection-item><strong>Followers:</strong><br><strong>Following:</strong></mz-collection-item>
+                        <button (click)="follow()">Follow</button>
+                        <mz-collection-item><strong>Followers:{{profUser.followers.length}}</strong><br><strong *ngIf="sameUser">Following:{{user.following.length}}</strong></mz-collection-item>
                         <mz-collection-item><strong>Bio</strong></mz-collection-item>
                         <mz-collection-item><strong>Favorite genres</strong></mz-collection-item>
                         <mz-collection-item><strong>Song of the week</strong></mz-collection-item>

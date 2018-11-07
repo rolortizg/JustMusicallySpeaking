@@ -13,6 +13,14 @@ const userSchema = new require('mongoose').Schema({
         type:Schema.Types.ObjectId,
         ref:'Song'
     }],
+    followers:[{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }],
+    following:[{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }],
     // image: String,
     email: String,
     // profile:{

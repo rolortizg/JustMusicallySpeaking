@@ -20,6 +20,8 @@ function isAuthenticated(req,res,next){
 router.get('/loggedUser',isAuthenticated, (req,res)=>{
     User.findById(req.user._id)
     .populate('songs')
+    .populate('followers')
+    .populate('following')
     .then(user=>{
         console.log(user)
         return res.json(user)
@@ -36,6 +38,8 @@ router.post('/signup',(req,res,next) => {
 router.post('/login', passport.authenticate('local'), (req,res,next) => {
     User.findById(req.user._id)
     .populate('songs')
+    .populate('followers')
+    .populate('following')
     .then(user => res.json(user))
     .catch(e => res.json(e))
    
@@ -58,6 +62,8 @@ router.get('/users',(req,res)=>{
 router.get('/profile/:id', (req, res) => {
     User.findById(req.params.id)
     .populate('songs')
+    .populate('followers')
+    .populate('following')
         .then(user => {
             if (!user) return res.status(404)
             return res.status(200).json(user);
@@ -69,6 +75,9 @@ router.get('/profile/:id', (req, res) => {
 
 router.put('/profile/:id', (req,res,next) => {
     User.findByIdAndUpdate(req.params.id, req.body, {new:true})
+    .populate('songs')
+    .populate('followers')
+    .populate('following')
         .then(user => {
             return res.status(202).json(user)
         }).catch(err => {

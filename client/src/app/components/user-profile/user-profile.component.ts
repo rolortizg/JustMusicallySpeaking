@@ -161,7 +161,7 @@ addToList(){
     
     
     console.log(this.profUser)
-    this.updateUser(this.profUser);
+    this.updateProfUser();
     
     console.log(list) //try profUser
     // this.question['lawyer'] = this.lawyer.username
@@ -196,10 +196,37 @@ like(){
   
 }
 
+follow(){
+  this.profUser.followers.push(this.user)
+  this.updateProfUser()
+  this.activateFollowing()
+  
+  console.log(this.user)
+  console.log(this.profUser)
+
+  // this.updateUser(this.user)
+  console.log(this.profUser.followers)
+}
+
+activateFollowing(){
+  this.user.following.push(this.profUser)
+  this.updateUser(this.user)
+}
+
+
+
 updateSong(song){
   this.addService.updateSong(this.song)
   .subscribe(()=>{
     console.log(this.song)
+  })
+}
+
+updateProfUser(){
+  this.authService.updateUser(this.profUser)
+  .subscribe(()=>{
+    console.log(this.profUser)
+    // this.router.navigate(['city-survey', this.listId]);
   })
 }
 
