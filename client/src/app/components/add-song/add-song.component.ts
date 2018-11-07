@@ -23,6 +23,7 @@ export class AddSongComponent implements OnInit {
   userId:any;
   profUserId:any;
   profUser:any;
+  userToken:any;
 
   songObj: any = {
     user: '',
@@ -43,6 +44,7 @@ export class AddSongComponent implements OnInit {
    
   this.addSongService.addSong(this.songObj)
   .subscribe( song => {
+    this.router.navigate(['/profile/', this.userToken._id])
     let id = song._id;
     this.songId = id;
     this.profUser.songs.push(this.songId);
@@ -50,8 +52,14 @@ export class AddSongComponent implements OnInit {
     this.updateUser(this.profUser);
     
     console.log(song)
+    
     // this.question['lawyer'] = this.lawyer.username
   })
+}
+
+
+like(){
+  
 }
 
   addItem(){
@@ -76,6 +84,11 @@ export class AddSongComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userToken = JSON.parse(localStorage.getItem('userToken'))
+   
+      
+      
+
     // this.route.params.subscribe()
     this.activeRoute.parent.params
     .subscribe(params=>{

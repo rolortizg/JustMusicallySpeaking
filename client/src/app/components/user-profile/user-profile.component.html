@@ -103,8 +103,9 @@
                                 <h6 class="card-title">{{song.name}}</h6>
                                 <h4>{{song.artist}}</h4>
                                 <p>{{song.description}}</p>
+                                <strong>{{song.likes}}</strong>
                                 <button *ngIf="sameUser" (click)="addToList()">+</button>
-                               <button (click)="like()">Like</button>
+                               <button [routerLink]="['/song', song._id]">See more</button>
                                 
                             </div>
                         

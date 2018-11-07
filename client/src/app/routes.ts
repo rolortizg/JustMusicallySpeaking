@@ -9,7 +9,7 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AddSongComponent } from './components/add-song/add-song.component'
 import { ExploreUsersComponent } from './components/explore-users/explore-users.component';
-
+import {SongDetailComponent} from './components/song-detail/song-detail.component'
 
 
 export const routes: Routes = [
@@ -24,11 +24,13 @@ export const routes: Routes = [
       children:[
         {
             path:'add',
-            component:AddSongComponent
+            component:AddSongComponent,
+            
         }
       ]
     },
     { path: 'explore/users', component: ExploreUsersComponent },
+    { path: 'song/:id', component: SongDetailComponent },
 
     // {
     //   path: 'signup',

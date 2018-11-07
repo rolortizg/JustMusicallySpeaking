@@ -16,13 +16,17 @@ export class AppComponent  implements OnInit{
     private authService: AuthService
   ){
 
+
+
   }
+
+  yourProfile(){
+    this.router.navigate(['/profile', this.user._id])
+  }  
   
   logout(){
     this.authService.logout();
-    
-    
-    
+  
   }
 
   ngOnInit() {

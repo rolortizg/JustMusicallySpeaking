@@ -38,7 +38,7 @@
           <h5 style="color:black;text-align:center">{{user.email}}</h5>
  
     <mz-sidenav-divider></mz-sidenav-divider>  
-      <a href="/profile">Your profile</a>
+      <a [routerLink]="['/profile', user._id]">Your profile</a>
       </mz-sidenav-link>
     <mz-sidenav-divider></mz-sidenav-divider>
       <mz-sidenav-link [active]="true">
@@ -60,7 +60,10 @@
       <h5 style="color:black;text-align:center">Email</h5>
 
 <mz-sidenav-divider></mz-sidenav-divider>  
-  <a href="/profile">Your profile</a>
+<!-- fix this!! -->
+  
+    <a [routerLink]="['/profile', user._id]">Your profile</a>
+  
   </mz-sidenav-link>
 <mz-sidenav-divider></mz-sidenav-divider>
   <mz-sidenav-link [active]="true">

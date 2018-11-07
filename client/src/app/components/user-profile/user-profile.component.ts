@@ -15,6 +15,7 @@ export class UserProfileComponent implements OnInit {
   songId : any;
   savedBy: any;
   userToken:any;
+  likedSongId:any;
   songName: any;
   profSongs: Array<any>
   song:any;
@@ -185,7 +186,7 @@ addToList(){
 // }
 
 like(){
-  this.addService.getOneSong(this.songId)
+  this.addService.getOneSong(this.likedSongId)
   .subscribe(song => {
     this.likeSong = song
     this.likeSong.likes++
