@@ -32,6 +32,12 @@ section {
   
  
 }
+
+.bottom-part{
+  position:absolute;
+  
+}
+
 .flx {
   display:flex;
 

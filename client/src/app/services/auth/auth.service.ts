@@ -51,10 +51,19 @@ export class AuthService {
   }
 
   updateUser(user) {
-    return this.http.put(this.url +'profile/' + user._id, user)
+    return this.http.put(this.url +'user/' + user._id, user)
+    .pipe(map((res: Response)=>res.json()))
+  }
+  updateProfUser(profUser) {
+    return this.http.put(this.url +'profile/' + profUser._id, profUser)
     .pipe(map((res: Response)=>res.json()))
   }
 
+  
+  follow(id){
+    return this.http.post(this.url + 'follow/' + id, id )
+    .pipe(map(res=>res.json()))
+  }
 
 
 }

@@ -122,7 +122,6 @@ export class UserProfileComponent implements OnInit {
         this.user = user;
         console.log(this.user)
         this.userId = user._id;
-       
         if (this.userId === this.profUserId) {
           this.sameUser = true;
         }
@@ -196,24 +195,39 @@ like(){
   
 }
 
-follow(){
-  this.profUser.followers.push(this.user)
-  this.updateProfUser()
+callBoth(){
+  this.follow()
   this.activateFollowing()
   
-  console.log(this.user)
-  console.log(this.profUser)
+}
 
-  // this.updateUser(this.user)
+follow(){
+  
+  this.profUser.followers.push(this.user)
+  this.updateProfUser()
+  console.log(this.profUser)
   console.log(this.profUser.followers)
 }
 
 activateFollowing(){
   this.user.following.push(this.profUser)
-  this.updateUser(this.user)
+  this.upDate()
+  console.log(this.user)
+  
+}
+
+upDate(){
+  this.updateUser()
 }
 
 
+updateUser(){
+  this.authService.updateUser(this.user)
+  .subscribe(()=>{
+    console.log(this.user)
+    // this.router.navigate(['city-survey', this.listId]);
+  })
+}
 
 updateSong(song){
   this.addService.updateSong(this.song)
@@ -223,23 +237,18 @@ updateSong(song){
 }
 
 updateProfUser(){
-  this.authService.updateUser(this.profUser)
+  this.authService.updateProfUser(this.profUser)
   .subscribe(()=>{
     console.log(this.profUser)
     // this.router.navigate(['city-survey', this.listId]);
   })
 }
 
-updateUser(user){
-  this.authService.updateUser(this.user)
-  .subscribe(()=>{
-    console.log(this.user)
-    // this.router.navigate(['city-survey', this.listId]);
-  })
+
 
  
 
-}
+
   
 
 }

@@ -73,10 +73,27 @@ router.get('/profile/:id', (req, res) => {
         });
 });
 
+router.post('/follow/:id', (req,res,next)=>{
+    User.findById(req.params.id)
+    .then(user => 
+        res.json(user))
+        user.following.push(req.params.id)
+    .catch(e=>res.json(e))
+})
+
 router.put('/profile/:id', (req,res,next) => {
     User.findByIdAndUpdate(req.params.id, req.body, {new:true})
     .populate('songs')
     .populate('followers')
+        .then(user => {
+            return res.status(202).json(user)
+        }).catch(err => {
+            return res.status(404).json(err);
+        })
+  })
+  router.put('/user/:id', (req,res,next) => {
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true})
+    .populate('songs')
     .populate('following')
         .then(user => {
             return res.status(202).json(user)
