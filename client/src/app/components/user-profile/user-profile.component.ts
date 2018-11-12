@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
   profUser:any
   profUserId:string = '';
   userId:string = '';
-  listId:string = ';';
+  likeId:string = ';';
   list: {};
   user:any
   sameUser: boolean = false
@@ -128,16 +128,19 @@ export class UserProfileComponent implements OnInit {
         })
 
     
-    this.addService.getSongs()
-    .subscribe(songs => {
-      this.listId = songs.user
-      this.songId = songs.id
-      this.songs = songs
-      this.songName = songs.name;
-      if (this.profUserId === this.listId) {
-        this.sameSongs = true;
-      }
-    })
+    // this.addService.getSongs()
+    // .subscribe(songs => {
+    //   this.songs = songs
+    //   console.log(this.songs)
+    //   this.likeId = songs.likes._id
+    //   console.log(this.likeId)
+    //   this.songId = songs._id
+    //   if (this.profUserId == this.likeId) {
+    //     this.sameSongs = true;
+        
+    //   }
+
+    // })
 
    
   }
@@ -151,8 +154,8 @@ addToList(){
   .subscribe( list => {
     this.list = list
     // this.savedBy = list.savedBy;
-    let id = list._id;
-    this.listId = id;
+    // let id = list._id;
+    // this.listId = id;
     this.profUser.songs.push(this.songs);
     
     

@@ -39,9 +39,9 @@
                         <button (click)="activateFollowing()">Following</button>
                         <mz-collection-item><strong>Followers:{{profUser.followers.length}}</strong></mz-collection-item>
                         <mz-collection-item><strong *ngIf="sameUser">Following:{{user.following.length}}</strong></mz-collection-item>
-                        <mz-collection-item><strong>Bio</strong></mz-collection-item>
-                        <mz-collection-item><strong>Favorite genres</strong></mz-collection-item>
-                        <mz-collection-item><strong>Song of the week</strong></mz-collection-item>
+                        <mz-collection-item><p><strong>Bio:</strong> {{user.bio}}</p></mz-collection-item>
+                        <mz-collection-item><p><strong>Favorite genres: </strong>{{user.favoriteGenres}}</p></mz-collection-item>
+                        <mz-collection-item><p><strong>Song of the week:</strong>{{user.songOTW}}</p></mz-collection-item>
                 </mz-collection>
                 <!-- <button>follow</button> -->
             
@@ -50,6 +50,22 @@
                             
                     </div> -->
            
+            <div *ngIf="sameUser">
+                    <button mz-button [routerLink]="['edit']" (click)="bottomSheetModal.openModal()">Edit</button>
+
+                    <mz-modal #bottomSheetModal [fixedFooter]="true" [bottomSheet]="true" [options]="modalOptions">
+                      <mz-modal-header>
+                        <h4>Edit User</h4>
+                      </mz-modal-header>
+                      <mz-modal-content>
+                          <router-outlet></router-outlet>
+                      </mz-modal-content>
+                      <mz-modal-footer>
+                        <button mz-button [routerLink]="['/profile', user._id]" [flat]="true" mz-modal-close>Disagree</button>
+                        <button mz-button [flat]="true" mz-modal-close>Agree</button>
+                      </mz-modal-footer>
+                    </mz-modal>
+             </div>
          </div>
         
         <div class="right-part">
@@ -86,8 +102,21 @@
                 </div> -->
 
                 <div *ngIf="sameUser">
-                    <a [routerLink]="['add']">Add song</a>
-                    <router-outlet></router-outlet>
+                        <button mz-button [routerLink]="['add']" (click)="basicModal.openModal()">Add Song</button>
+
+                        <mz-modal #basicModal [options]="modalOptions">
+                          <mz-modal-header>
+                            <h4>Add Song</h4>
+                          </mz-modal-header>
+                          <mz-modal-content>
+                                <router-outlet></router-outlet>
+                          </mz-modal-content>
+                          <mz-modal-footer>
+                            <button [routerLink]="['/profile', user._id]" mz-button [flat]="true" mz-modal-close>Close</button>
+                          </mz-modal-footer>
+                        </mz-modal>
+                    <!-- <a [routerLink]="['add']">Add song</a>
+                    <router-outlet></router-outlet> -->
                 </div>
                 <div *ngIf="sameUser">
                     <p>nigga we made it!</p>
@@ -106,8 +135,8 @@
                                 <h6 class="card-title">{{song.name}}</h6>
                                 <h4>{{song.artist}}</h4>
                                 <p>{{song.description}}</p>
-                                <strong>{{song.likes}}</strong>
-                                <button *ngIf="sameUser" (click)="addToList()">+</button>
+                                <strong>{{song.likes}} Likes</strong>
+                                <!-- <button *ngIf="sameUser" (click)="addToList()">+</button> -->
                                <button [routerLink]="['/song', song._id]">See more</button>
                                 
                             </div>
@@ -117,9 +146,14 @@
                 
             <div>
                 <h1 style="text-align:center;">Feed</h1>
-                <!-- <div *ngFor="let song of profUser.following.songs">
+                <div>
+                    <!-- <div *ngFor="let chanson of songs.likes">
+                        {{chanson.song.name}}
+                    </div> -->
+                </div>
+                <div *ngFor="let song of profUser.liked">
                     {{song.name}}
-                </div> -->
+                </div>
             </div> 
          </div>
          

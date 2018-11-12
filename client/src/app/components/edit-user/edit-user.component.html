@@ -1,0 +1,9 @@
+<form>
+    <!-- <input type="file" name="image" [(ngModel)]="item.image"> -->
+    <input placeholder="Bio" type="text" name="bio" [(ngModel)]="user.bio">
+    <input placeholder="Favorite Genres (Max 3)" type="textarea" name="favoriteGenres" [(ngModel)]="user.favoriteGenres">
+    <input placeholder="Song of the Week" type="text" name="songOTW" [(ngModel)]="user.songOTW">
+    <!-- <button (click)="addItem()" type="submit">Upload</button> -->
+    <button (click)="editOneUser()">Change</button>
+</form>
+  

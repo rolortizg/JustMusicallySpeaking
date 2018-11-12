@@ -10,6 +10,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AddSongComponent } from './components/add-song/add-song.component'
 import { ExploreUsersComponent } from './components/explore-users/explore-users.component';
 import {SongDetailComponent} from './components/song-detail/song-detail.component'
+import {EditUserComponent} from './components/edit-user/edit-user.component'
 
 
 export const routes: Routes = [
@@ -26,7 +27,12 @@ export const routes: Routes = [
             path:'add',
             component:AddSongComponent,
             
-        }
+        },
+        {
+          path:'edit',
+          component:EditUserComponent,
+          
+      }
       ]
     },
     { path: 'explore/users', component: ExploreUsersComponent },

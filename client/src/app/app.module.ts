@@ -37,6 +37,7 @@ import { SpotifyService } from './services/spotify.service';
 import { ListService } from './services/list/list.service';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { CapitalizrPipe } from './pipes/capitalizr.pipe';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 
 
@@ -53,6 +54,7 @@ import { CapitalizrPipe } from './pipes/capitalizr.pipe';
     AddSongComponent,
     ExploreUsersComponent,
     SongDetailComponent,
+    EditUserComponent,
     
   ],
   imports: [

@@ -9,7 +9,14 @@ const userSchema = new require('mongoose').Schema({
         type:String,
         default:'FB'
     },
+    bio:String,
+    favoriteGenres:String,
+    songOTW:String,
     songs:[{
+        type:Schema.Types.ObjectId,
+        ref:'Song'
+    }],
+    liked:[{
         type:Schema.Types.ObjectId,
         ref:'Song'
     }],

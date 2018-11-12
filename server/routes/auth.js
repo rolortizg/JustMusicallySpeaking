@@ -20,6 +20,7 @@ function isAuthenticated(req,res,next){
 router.get('/loggedUser',isAuthenticated, (req,res)=>{
     User.findById(req.user._id)
     .populate('songs')
+    .populate('liked')
     .populate('followers')
     .populate('following')
     .then(user=>{
@@ -38,6 +39,7 @@ router.post('/signup',(req,res,next) => {
 router.post('/login', passport.authenticate('local'), (req,res,next) => {
     User.findById(req.user._id)
     .populate('songs')
+    .populate('liked')
     .populate('followers')
     .populate('following')
     .then(user => res.json(user))
@@ -62,6 +64,7 @@ router.get('/users',(req,res)=>{
 router.get('/profile/:id', (req, res) => {
     User.findById(req.params.id)
     .populate('songs')
+    .populate('liked')
     .populate('followers')
     .populate('following')
         .then(user => {
@@ -84,7 +87,9 @@ router.post('/follow/:id', (req,res,next)=>{
 router.put('/profile/:id', (req,res,next) => {
     User.findByIdAndUpdate(req.params.id, req.body, {new:true})
     .populate('songs')
+    .populate('liked')
     .populate('followers')
+    .populate('following')
         .then(user => {
             return res.status(202).json(user)
         }).catch(err => {
@@ -94,7 +99,9 @@ router.put('/profile/:id', (req,res,next) => {
   router.put('/user/:id', (req,res,next) => {
     User.findByIdAndUpdate(req.params.id, req.body, {new:true})
     .populate('songs')
+    .populate('liked')
     .populate('following')
+    .populate('followers')
         .then(user => {
             return res.status(202).json(user)
         }).catch(err => {
