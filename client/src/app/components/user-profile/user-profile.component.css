@@ -1,13 +1,10 @@
 
 .butoun {
   position:absolute;
-  right:10%;
-  top:10%;
+  right:5%;
+  top:17%;
 }
 
-section {
- 
-}
 
 
 .row {
@@ -18,8 +15,9 @@ section {
 .right-part {
   position:absolute;
   right:0%;
-  width:70%;
+  width:79%;
   display:inline;
+  
 
 }
 
@@ -28,15 +26,15 @@ section {
   position:absolute;
   left:0%;
   width:20%;
-  height:100vh;
+  height:450px;
   
  
 }
 
-.bottom-part{
+/* .bottom-part{
   position:absolute;
-  
-}
+
+} */
 
 .flx {
   display:flex;
@@ -48,6 +46,22 @@ section {
   margin:20px 20px 20px 50px;
 } */
 
-.theCard {
-  width:60%;
+
+
+
+.feed {
+  display:flex;
+  justify-content:center;
+
 }
+
+.middle-child {
+  padding-left: 80px;
+  padding-right:80px;
+}
+
+/* .bottom-part {
+  
+  margin-left:-40%;
+  width:100vw;
+} */

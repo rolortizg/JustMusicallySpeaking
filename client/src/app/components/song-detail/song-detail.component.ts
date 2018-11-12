@@ -11,7 +11,7 @@ import {AuthService} from '../../services/auth/auth.service'
 })
 export class SongDetailComponent implements OnInit {
   id: any;
-  userSongId:any
+  userSongId:any = []
   song: any;
   user:any;
   liked: boolean = false
@@ -23,12 +23,16 @@ export class SongDetailComponent implements OnInit {
   ) { }
 
   like(){
-   
-    
+   if (this.user._id == this.userSongId)
+   return console.log("Not allowed son, already liked it")
+   else {
     this.song.likes++
     console.log(this.song.likes)
     this.updateSong(this.song)
     this.getLiked()
+   }
+    
+    
 
 
   }
@@ -73,8 +77,8 @@ export class SongDetailComponent implements OnInit {
       .subscribe(user=>{
         console.log(user)
         this.user = user;
-        this.userSongId = user.liked._id
-        console.log(this.user)
+        this.userSongId = user.liked[0].id
+        console.log(this.userSongId)
         
         })
      if(this.user.liked.includes(this.id)){

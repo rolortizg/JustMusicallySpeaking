@@ -36,7 +36,7 @@
                         <mz-collection-header><h4>{{profUser.name[0]}}.{{profUser.lastName[0] | capitalizr}}</h4></mz-collection-header>
                         <mz-collection-item><img class="profilePic" style="width:60%;" src="../../../assets/img/noimage.png"><br></mz-collection-item>
                         <button (click)="follow()">Follow</button>
-                        <button (click)="activateFollowing()">Following</button>
+                        <button (click)="activateFollowing()">Subscribe</button>
                         <mz-collection-item><strong>Followers:{{profUser.followers.length}}</strong></mz-collection-item>
                         <mz-collection-item><strong *ngIf="sameUser">Following:{{user.following.length}}</strong></mz-collection-item>
                         <mz-collection-item><p><strong>Bio:</strong> {{user.bio}}</p></mz-collection-item>
@@ -71,7 +71,7 @@
         <div class="right-part">
 
             <!-- trying without it -->
-                <!-- <div *ngIf="show">
+                <div *ngIf="show">
         
                         <div class="row">
                                 <div class="col">
@@ -92,9 +92,9 @@
                                 <button (click)="addToList()">+</button>
                                 </div>
                         </div>
-                </div> -->
+                </div>
                 
-                <h1>{{profUser.name}}'s 9 songs:</h1>
+                <h1 style="text-align:center;">{{profUser.name}}'s 9 songs:</h1>
                 
                 <!-- <div *ngFor="let song of songs">
                     <h3>{{song.name}}</h3>
@@ -118,9 +118,6 @@
                     <!-- <a [routerLink]="['add']">Add song</a>
                     <router-outlet></router-outlet> -->
                 </div>
-                <div *ngIf="sameUser">
-                    <p>nigga we made it!</p>
-                </div>
                <!-- <div *ngFor="let song of profUser.songs">
                     <h4>{{song.name}}</h4>
                     <h6>{{song.artist}}</h6>
@@ -134,8 +131,7 @@
                             <div class="card-body">
                                 <h6 class="card-title">{{song.name}}</h6>
                                 <h4>{{song.artist}}</h4>
-                                <p>{{song.description}}</p>
-                                <strong>{{song.likes}} Likes</strong>
+                                <strong>{{song.likes}} Likes</strong> <br>
                                 <!-- <button *ngIf="sameUser" (click)="addToList()">+</button> -->
                                <button [routerLink]="['/song', song._id]">See more</button>
                                 
@@ -143,18 +139,44 @@
                         
                         </div>
                  </div>
+
+            <section class="bottom-part">
+                    <h1 style="text-align:center;">Feed</h1>
                 
-            <div>
-                <h1 style="text-align:center;">Feed</h1>
-                <div>
-                    <!-- <div *ngFor="let chanson of songs.likes">
-                        {{chanson.song.name}}
-                    </div> -->
-                </div>
-                <div *ngFor="let song of profUser.liked">
-                    {{song.name}}
-                </div>
-            </div> 
+                    <div class="feed">
+                       
+                        <div>
+                            <!-- <div *ngFor="let chanson of songs.likes">
+                                {{chanson.song.name}}
+                            </div> -->
+                        </div>
+                        <div>
+        
+                                <h3>Liked Songs</h3>
+                                <div *ngFor="let song of profUser.liked">
+                                    <p style="text-align:center"> {{song.name}}</p>
+                                </div>
+                        </div>
+        
+                        <div class="middle-child">
+                                <h3>Subscribed Users</h3> 
+                                <div *ngFor="let user of profUser.following">
+                                     
+                                    <p style="text-align:center">{{user.name}}</p>
+                                </div>
+                        </div>
+                        <div >
+                                <h3>Future Implementation</h3>  
+                                <div>
+                                        <p style="text-align:center">Penis</p>
+                                        <p style="text-align:center">Pipi</p>
+                                        <p style="text-align:center">Heny</p>
+                                        <p style="text-align:center">Meny</p>
+                                        <p style="text-align:center">Leby</p>
+                                </div>
+                        </div>
+                    </div> 
+            </section>
          </div>
          
          <!-- <button (click)="toggle()">{{buttonName}}</button> -->
